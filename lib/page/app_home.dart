@@ -7,6 +7,7 @@ import 'package:robin_app/page/camera_screen.dart';
 import 'package:robin_app/page/chat_screen.dart';
 import 'package:robin_app/page/status_screen.dart';
 import 'package:robin_app/page/call_screen.dart';
+import 'package:robin_app/page/home_drawer.dart';
 
 class AppHome extends StatefulWidget {
   var cameras;
@@ -19,6 +20,7 @@ class AppHome extends StatefulWidget {
 
 class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
   TabController _tabController;
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey();
 
   @override
   void initState() {
@@ -30,6 +32,7 @@ class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     return new OKToast(
         child: Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text("Robin App"),
         bottom: new TabBar(
@@ -110,6 +113,9 @@ class _AppHomeState extends State<AppHome> with SingleTickerProviderStateMixin {
               textStyle: TextStyle(fontSize: 18.0),
             ),
       ),
+          drawer: new Drawer(
+            child: new HomeDrawerPage(),
+          ),
     ));
   }
 }
